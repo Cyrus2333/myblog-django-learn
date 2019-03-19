@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>编写新文章</title>
+    </head>
+    <body>
+        <form action="{% url 'blog:publish' %}" method="POST">
+            {% csrf_token %} 
+            <label>文章标题</label><br/>
+            <input type="text" name="title"/><br/>
+            <label>文章内容</label><br/>
+            <textarea name="content"></textarea><br/>
+            <input type="submit" value="发布文章"/>
+        </form>
+    </body>
+</html>
