@@ -7,11 +7,21 @@
     <body>
         <form action="{% url 'blog:publish' %}" method="POST">
             {% csrf_token %} 
-            <label>文章标题</label><br/>
-            <input type="text" name="title"/><br/>
-            <label>文章内容</label><br/>
-            <textarea name="content"></textarea><br/>
-            <input type="submit" value="发布文章"/>
+            {% if article %}
+                <input type="hidden" name="article_id" value="{{ article.id }}"/>
+                <label>文章标题</label><br/>
+                <input type="text" name="title" value="{{ article.title }}"/><br/>
+                <label>文章内容</label><br/>
+                <textarea name="content" >{{ article.content }}</textarea><br/>
+                <input type="submit" value="修改文章"/>
+            {% else %}
+                <input type="hidden" value="0"/>
+                <label>文章标题</label><br/>
+                <input type="text" name="title"/><br/>
+                <label>文章内容</label><br/>
+                <textarea name="content"></textarea><br/>
+                <input type="submit" value="发布文章"/>
+            {% endif %}
         </form>
     </body>
 </html>
